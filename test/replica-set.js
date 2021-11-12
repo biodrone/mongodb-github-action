@@ -33,7 +33,7 @@ describe('MongoDB Replica Set ->', () => {
     const { ok, set } = await db.command({ replSetGetStatus: 1 })
 
     expect(ok).to.equal(1)
-    expect(set).to.equal(process.env.MONGODB_REPLICA_SET)
+    expect(set).to.equal(MONGODB_REPLICA_SET)
   })
 
   it('saves a document', async () => {
