@@ -22,17 +22,17 @@ inputs:
     default: 27017
 
   mongodb-db:
-    description: 'MongoDB db to create'
+    description: 'MongoDB db to create (default: none)'
     required: false
     default: ''
 
   mongodb-username:
-    description: 'MongoDB root username'
+    description: 'MongoDB root username (default: none)'
     required: false
     default: ''
 
   mongodb-password:
-    description: 'MongoDB root password'
+    description: 'MongoDB root password (default: none)'
     required: false
     default: ''
 
