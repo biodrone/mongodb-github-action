@@ -82,3 +82,5 @@ jobs:
           CI: true
           MONGODB_PORT: ${{ matrix.mongodb-port }}
           MONGODB_REPLICA_SET: mongodb-test-rs
+          MONGODB_USERNAME: ${{ matrix.mongodb-username }}
+          MONGODB_PASSWORD: ${{ matrix.mongodb-password }}
