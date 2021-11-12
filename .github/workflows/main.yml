@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mongodb-version: ['4.0', '4.2', '4.4']
-        mongodb-db: ['ci']
-        mongodb-username: ['ci']
-        mongodb-password: ['ci']
+        mongodb-version: ['4.0', '4.2', '4.4', '5.0']
+        mongodb-db: ['ci', '']
+        mongodb-username: ['ci', '']
+        mongodb-password: ['ci', '']
 
     steps:
       - name: Checkout
