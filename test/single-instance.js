@@ -11,7 +11,11 @@ describe('MongoDB Single Instance ->', () => {
     await expect(
       Mongoose.connect('mongodb://localhost', {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        user: 'ci',
+        pass: 'ci',
+        dbName: 'ci',
+        authSource: 'admin'
       })
     ).to.not.reject()
   })
