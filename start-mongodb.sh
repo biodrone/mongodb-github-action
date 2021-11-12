@@ -4,6 +4,9 @@
 MONGODB_VERSION=$1
 MONGODB_REPLICA_SET=$2
 MONGODB_PORT=$3
+MONGODB_DB=$4
+MONGODB_USERNAME=$5
+MONGODB_PASSWORD=$6
 
 
 if [ -z "$MONGODB_VERSION" ]; then
@@ -19,9 +22,11 @@ if [ -z "$MONGODB_REPLICA_SET" ]; then
   echo "::group::Starting single-node instance, no replica set"
   echo "  - port [$MONGODB_PORT]"
   echo "  - version [$MONGODB_VERSION]"
+  echo "  - database [$MONGODB_DB]"
+  echo "  - credentials [$MONGODB_USERNAME : $MONGODB_PASSWORD]"
   echo ""
 
-  docker run --name mongodb --publish $MONGODB_PORT:27017 --detach mongo:$MONGODB_VERSION
+  docker run --name mongodb --publish $MONGODB_PORT:27017 -e MONGO_INITDB_DATABASE=$MONGODB_DB -e MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME -e MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD --detach mongo:$MONGODB_VERSION
   echo "::endgroup::"
 
   return
@@ -34,7 +39,7 @@ echo "  - version [$MONGODB_VERSION]"
 echo "  - replica set [$MONGODB_REPLICA_SET]"
 echo ""
 
-docker run --name mongodb --publish $MONGODB_PORT:$MONGODB_PORT --detach mongo:$MONGODB_VERSION mongod --replSet $MONGODB_REPLICA_SET --port $MONGODB_PORT
+docker run --name mongodb --publish $MONGODB_PORT:$MONGODB_PORT -e MONGO_INITDB_DATABASE=$MONGODB_DB -e MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME -e MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD --detach mongo:$MONGODB_VERSION mongod --replSet $MONGODB_REPLICA_SET --port $MONGODB_PORT
 echo "::endgroup::"
 
 
@@ -42,7 +47,7 @@ echo "::group::Waiting for MongoDB to accept connections"
 sleep 1
 TIMER=0
 
-until docker exec --tty mongodb mongo --port $MONGODB_PORT --eval "db.serverStatus()" # &> /dev/null
+until docker exec --tty mongodb mongo --port $MONGODB_PORT -u $MONGODB_USERNAME -p $MONGODB_PASSWORD --eval "db.serverStatus()" # &> /dev/null
 do
   sleep 1
   echo "."
@@ -58,7 +63,7 @@ echo "::endgroup::"
 
 echo "::group::Initiating replica set [$MONGODB_REPLICA_SET]"
 
-docker exec --tty mongodb mongo --port $MONGODB_PORT --eval "
+docker exec --tty mongodb mongo --port $MONGODB_PORT -u $MONGODB_USERNAME -p $MONGODB_PASSWORD --eval "
   rs.initiate({
     \"_id\": \"$MONGODB_REPLICA_SET\",
     \"members\": [ {
@@ -73,7 +78,7 @@ echo "::endgroup::"
 
 
 echo "::group::Checking replica set status [$MONGODB_REPLICA_SET]"
-docker exec --tty mongodb mongo --port $MONGODB_PORT --eval "
+docker exec --tty mongodb mongo --port $MONGODB_PORT -u $MONGODB_USERNAME -p $MONGODB_PASSWORD --eval "
   rs.status()
 "
 echo "::endgroup::"

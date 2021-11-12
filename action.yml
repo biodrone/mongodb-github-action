@@ -28,3 +28,6 @@ runs:
     - ${{ inputs.mongodb-version }}
     - ${{ inputs.mongodb-replica-set }}
     - ${{ inputs.mongodb-port }}
+    - ${{ inputs.mongodb-db }}
+    - ${{ inputs.mongodb-username }}
+    - ${{ inputs.mongodb-password }}
