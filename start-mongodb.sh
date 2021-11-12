@@ -23,7 +23,7 @@ if [ -z "$MONGODB_REPLICA_SET" ]; then
   echo "  - port [$MONGODB_PORT]"
   echo "  - version [$MONGODB_VERSION]"
   echo "  - database [$MONGODB_DB]"
-  echo "  - credentials [$MONGODB_USERNAME : $MONGODB_PASSWORD]"
+  echo "  - credentials [$MONGODB_USERNAME:$MONGODB_PASSWORD]"
   echo ""
 
   docker run --name mongodb --publish $MONGODB_PORT:27017 -e MONGO_INITDB_DATABASE=$MONGODB_DB -e MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME -e MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD --detach mongo:$MONGODB_VERSION
