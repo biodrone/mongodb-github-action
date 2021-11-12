@@ -4,13 +4,13 @@ const Lab = require('@hapi/lab')
 const Mongoose = require('mongoose')
 const { expect } = require('@hapi/code')
 
-const { MONGODB_PORT = 27017, MONGODB_REPLICA_SET = 'mongodb-test-rs' } = process.env
+// const { MONGODB_PORT = 27017, MONGODB_REPLICA_SET = 'mongodb-test-rs' } = process.env
 
 const { describe, it, before, after } = (exports.lab = Lab.script())
 
 describe('MongoDB Replica Set ->', () => {
   before(async () => {
-    const connectionString = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}localhost:${MONGODB_PORT}/test?replicaSet=${MONGODB_REPLICA_SET}`
+    const connectionString = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}localhost:${process.env.MONGODB_PORT}/test?replicaSet=${process.env.MONGODB_REPLICA_SET}`
 
     console.log('---------------------------------------------------------------------')
     console.log('connecting to MongoDB using connection string -> ' + connectionString)
@@ -33,7 +33,7 @@ describe('MongoDB Replica Set ->', () => {
     const { ok, set } = await db.command({ replSetGetStatus: 1 })
 
     expect(ok).to.equal(1)
-    expect(set).to.equal(MONGODB_REPLICA_SET)
+    expect(set).to.equal(process.env.MONGODB_REPLICA_SET)
   })
 
   it('saves a document', async () => {
