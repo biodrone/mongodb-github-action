@@ -10,10 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12, 14, 16]
-        mongodb-version: ['4.4']
-        mongodb-db: ['ci']
-        mongodb-username: ['ci']
-        mongodb-password: ['ci']
+        mongodb-version: ['4.0', '4.2', '4.4']
 
     steps:
       - name: Checkout
@@ -24,9 +21,6 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-replica-set: mongodb-test-rs
-          mongodb-db: ${{ matrix.mongodb-db }}
-          mongodb-username: ${{ matrix.mongodb-username }}
-          mongodb-password: ${{ matrix.mongodb-password }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -41,9 +35,6 @@ jobs:
         env:
           CI: true
           MONGODB_REPLICA_SET: mongodb-test-rs
-          MONGODB_DB: ${{ matrix.mongodb-db }}
-          MONGODB_USERNAME: ${{ matrix.mongodb-username }}
-          MONGODB_PASSWORD: ${{ matrix.mongodb-password }}
 
   single-node-replica-set-on-custom-port:
     runs-on: ubuntu-latest
@@ -51,7 +42,7 @@ jobs:
       matrix:
         node-version: [12, 14, 16]
         mongodb-port: [23456]
-        mongodb-version: ['4.4']
+        mongodb-version: ['4.0', '4.2', '4.4']
         mongodb-db: ['ci']
         mongodb-username: ['ci']
         mongodb-password: ['ci']
@@ -67,9 +58,6 @@ jobs:
           mongodb-port: ${{ matrix.mongodb-port }}
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-replica-set: mongodb-test-rs
-          mongodb-db: ${{ matrix.mongodb-db }}
-          mongodb-username: ${{ matrix.mongodb-username }}
-          mongodb-password: ${{ matrix.mongodb-password }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -85,6 +73,3 @@ jobs:
           CI: true
           MONGODB_PORT: ${{ matrix.mongodb-port }}
           MONGODB_REPLICA_SET: mongodb-test-rs
-          MONGODB_DB: ${{ matrix.mongodb-db }}
-          MONGODB_USERNAME: ${{ matrix.mongodb-username }}
-          MONGODB_PASSWORD: ${{ matrix.mongodb-password }}
