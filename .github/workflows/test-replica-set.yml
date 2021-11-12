@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12, 14, 16]
-        mongodb-version: ['4.0', '4.2', '4.4', '4.6', '5.0']
+        mongodb-version: ['4.0', '4.2', '4.4', '5.0']
         mongodb-db: ['ci']
         mongodb-username: ['ci']
         mongodb-password: ['ci']
@@ -51,7 +51,7 @@ jobs:
       matrix:
         node-version: [12, 14, 16]
         mongodb-port: [23456]
-        mongodb-version: ['4.0', '4.2', '4.4', '4.6', '5.0']
+        mongodb-version: ['4.0', '4.2', '4.4', '5.0']
         mongodb-db: ['ci']
         mongodb-username: ['ci']
         mongodb-password: ['ci']
