@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         mongodb-version: ['4.0', '4.2', '4.4']
-        mongodb-db: ['actions-db']
+        mongodb-db: ['ci']
         mongodb-username: ['ci']
         mongodb-password: ['ci']
 
