@@ -12,9 +12,9 @@ describe('MongoDB Single Instance ->', () => {
       Mongoose.connect('mongodb://localhost', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        user: 'ci',
-        pass: 'ci',
-        dbName: 'ci',
+        user: process.env.MONGODB_USERNAME,
+        pass: process.env.MONGODB_PASSWORD,
+        dbName: process.env.MONGODB_DB,
         authSource: 'admin'
       })
     ).to.not.reject()
