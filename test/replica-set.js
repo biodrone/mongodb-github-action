@@ -20,7 +20,7 @@ describe('MongoDB Replica Set ->', () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 1500,
-      authSource = `${MONGODB_DB}`
+      authSource = MONGODB_DB
     })
   })
 
