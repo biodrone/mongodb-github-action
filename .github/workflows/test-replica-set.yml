@@ -11,6 +11,9 @@ jobs:
       matrix:
         node-version: [12, 14, 16]
         mongodb-version: ['4.0', '4.2', '4.4']
+        mongodb-db: ['actions-db']
+        mongodb-username: ['actions-user']
+        mongodb-password: ['actions-pass']
 
     steps:
       - name: Checkout
@@ -21,6 +24,9 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-replica-set: mongodb-test-rs
+          mongodb-db: ${{ matrix.mongodb-db }}
+          mongodb-username: ${{ matrix.mongodb-username }}
+          mongodb-password: ${{ matrix.mongodb-password }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -43,6 +49,9 @@ jobs:
         node-version: [12, 14, 16]
         mongodb-port: [23456]
         mongodb-version: ['4.0', '4.2', '4.4']
+        mongodb-db: ['actions-db']
+        mongodb-username: ['actions-user']
+        mongodb-password: ['actions-pass']
 
     name: MongoDB v${{ matrix.mongodb-version }} RS on custom port — Node.js v${{ matrix.node-version }}
     steps:
@@ -55,6 +64,9 @@ jobs:
           mongodb-port: ${{ matrix.mongodb-port }}
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-replica-set: mongodb-test-rs
+          mongodb-db: ${{ matrix.mongodb-db }}
+          mongodb-username: ${{ matrix.mongodb-username }}
+          mongodb-password: ${{ matrix.mongodb-password }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
