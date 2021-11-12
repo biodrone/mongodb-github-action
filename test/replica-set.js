@@ -19,7 +19,8 @@ describe('MongoDB Replica Set ->', () => {
     await Mongoose.connect(connectionString, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 1500
+      serverSelectionTimeoutMS: 1500,
+      authSource = `${MONGODB_DB}`
     })
   })
 
