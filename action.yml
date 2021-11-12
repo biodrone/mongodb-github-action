@@ -21,6 +21,21 @@ inputs:
     required: false
     default: 27017
 
+  mongodb-db:
+    description: 'MongoDB db to create'
+    required: false
+    default: ''
+
+  mongodb-username:
+    description: 'MongoDB root username'
+    required: false
+    default: ''
+
+  mongodb-password:
+    description: 'MongoDB root password'
+    required: false
+    default: ''
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
