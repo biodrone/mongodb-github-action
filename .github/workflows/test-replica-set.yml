@@ -41,6 +41,7 @@ jobs:
         env:
           CI: true
           MONGODB_REPLICA_SET: mongodb-test-rs
+          MONGODB_DB: ${{ matrix.mongodb-db }}
           MONGODB_USERNAME: ${{ matrix.mongodb-username }}
           MONGODB_PASSWORD: ${{ matrix.mongodb-password }}
 
@@ -84,5 +85,6 @@ jobs:
           CI: true
           MONGODB_PORT: ${{ matrix.mongodb-port }}
           MONGODB_REPLICA_SET: mongodb-test-rs
+          MONGODB_DB: ${{ matrix.mongodb-db }}
           MONGODB_USERNAME: ${{ matrix.mongodb-username }}
           MONGODB_PASSWORD: ${{ matrix.mongodb-password }}
