@@ -10,7 +10,7 @@ const { describe, it, before, after } = (exports.lab = Lab.script())
 
 describe('MongoDB Replica Set ->', () => {
   before(async () => {
-    const connectionString = `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@localhost:${MONGODB_PORT}/test?replicaSet=${MONGODB_REPLICA_SET}`
+    const connectionString = `mongodb://ci:ci@localhost:${MONGODB_PORT}/test?replicaSet=${MONGODB_REPLICA_SET}`
 
     console.log('---------------------------------------------------------------------')
     console.log('connecting to MongoDB using connection string -> ' + connectionString)
