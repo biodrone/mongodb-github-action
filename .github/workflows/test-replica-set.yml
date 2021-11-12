@@ -12,8 +12,8 @@ jobs:
         node-version: [12, 14, 16]
         mongodb-version: ['4.0', '4.2', '4.4']
         mongodb-db: ['actions-db']
-        mongodb-username: ['actions']
-        mongodb-password: ['actions']
+        mongodb-username: ['actions-user']
+        mongodb-password: ['actions-pass']
 
     steps:
       - name: Checkout
@@ -50,8 +50,8 @@ jobs:
         mongodb-port: [23456]
         mongodb-version: ['4.0', '4.2', '4.4']
         mongodb-db: ['actions-db']
-        mongodb-username: ['actions']
-        mongodb-password: ['actions']
+        mongodb-username: ['actions-user']
+        mongodb-password: ['actions-pass']
 
     name: MongoDB v${{ matrix.mongodb-version }} RS on custom port — Node.js v${{ matrix.node-version }}
     steps:
