@@ -48,8 +48,8 @@ jobs:
         mongodb-port: [12345]
         mongodb-version: ['4.0', '4.2', '4.4']
         mongodb-db: ['actions-db']
-        mongodb-username: ['actions-user']
-        mongodb-password: ['actions-pass']
+        mongodb-username: ['ci']
+        mongodb-password: ['ci']
         node-version: [12, 14, 16]
 
     name: MongoDB on custom port v${{ matrix.mongodb-version }} — Node.js v${{ matrix.node-version }}
@@ -78,3 +78,5 @@ jobs:
         run: npm test ./test/custom-port.js
         env:
           CI: true
+          MONGODB_USERNAME: ${{ matrix.mongodb-username }}
+          MONGODB_PASSWORD: ${{ matrix.mongodb-password }}
