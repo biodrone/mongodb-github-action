@@ -22,7 +22,8 @@ describe('MongoDB Replica Set ->', () => {
       serverSelectionTimeoutMS: 1500,
       user: 'ci',
       pass: 'ci',
-      dbName: 'ci'
+      dbName: 'ci',
+      authSource: 'admin'
     })
   })
 
